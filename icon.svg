@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#F7F5F1"/>
+  <g fill="none" stroke="#35322D" stroke-width="22" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="104" y="112" width="260" height="300" rx="40"/>
+    <!-- 書いている途中の英文（波線） -->
+    <path d="M146 190 q14 -22 28 0 t28 0 t28 0 t28 0 t28 0"/>
+    <path d="M146 254 q14 -22 28 0 t28 0 t28 0 t28 0"/>
+    <path d="M146 318 q14 -22 28 0 t28 0"/>
+    <!-- 鉛筆（書いている途中） -->
+    </g><g fill="#F7F5F1" stroke="#35322D" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"><path d="M232 340 L376 196 L412 232 L268 376 L222 386 Z"/>
+  </g>
+  <path d="M222 386 L230 352 L256 378 Z" fill="#35322D"/>
+  <path d="M376 196 L394 178 A18 18 0 0 1 420 178 L430 188 A18 18 0 0 1 430 214 L412 232 Z" fill="#F07470"/>
+</svg>
