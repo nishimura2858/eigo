@@ -7,8 +7,9 @@
 <!-- ホーム画面に追加したときの名前とアイコン -->
 <meta name="apple-mobile-web-app-title" content="英語学習">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#F7F5F1">
+<meta name="theme-color" content="#FFFFFF">
 <!-- ホーム画面のアイコン。iPad は 152・167、iPhone は 180 を使う。?v= は版（画像を変えたら数字を上げると、iPadが新しい画像を読み直す） -->
 <link rel="apple-touch-icon" sizes="180x180" href="https://nishimura2858.github.io/eigo/icon-180.png?v=2">
 <link rel="apple-touch-icon" sizes="167x167" href="https://nishimura2858.github.io/eigo/icon-167.png?v=2">
@@ -17,45 +18,18 @@
 <link rel="icon" type="image/png" sizes="32x32" href="https://nishimura2858.github.io/eigo/icon-32.png?v=2">
 <link rel="manifest" href="manifest.webmanifest?v=2">
 <style>
-  :root{--bg:#F7F5F1;--ink:#35322D;--muted:#6B665E;--line:#DDD8CF;--accent:#F07470;--btn:#35322D;--btnInk:#FFFFFF}
-  @media (prefers-color-scheme:dark){:root{--bg:#1F1D1A;--ink:#EDEAE4;--muted:#A8A196;--line:#3A3631;--btn:#EDEAE4;--btnInk:#1F1D1A}}
-  *{box-sizing:border-box}
-  body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);font-family:-apple-system,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;padding:24px 16px}
-  main{max-width:420px;margin:6vh auto 0;text-align:center;overflow-wrap:anywhere}
-  .icon{width:96px;height:96px;border-radius:22px;box-shadow:0 6px 18px rgba(0,0,0,.12)}
-  h1{font-size:1.6rem;margin:16px 0 4px;letter-spacing:.04em}
-  .sub{color:var(--muted);font-size:.9rem;margin:0 0 22px}
-  .open{display:block;width:100%;padding:16px;border-radius:14px;background:var(--btn);color:var(--btnInk);font-size:1.1rem;font-weight:700;text-decoration:none}
-  .how{margin-top:26px;text-align:left;border-top:1px solid var(--line);padding-top:18px}
-  .how h2{font-size:1rem;margin:0 0 10px}
-  .how ol{margin:0;padding-left:1.3em;line-height:1.8;font-size:.92rem}
-  .how b{color:var(--accent)}
-  .note{color:var(--muted);font-size:.8rem;margin-top:14px;line-height:1.6}
+  html,body{margin:0;height:100%;background:#FFFFFF}
+  /* アプリ（Google Apps Script）をページいっぱいに表示する。ホーム画面から開いたときは、上の時計などの部分をあける */
+  iframe{position:fixed;left:0;right:0;bottom:0;top:env(safe-area-inset-top,0);width:100%;height:calc(100% - env(safe-area-inset-top,0px));border:0;display:block}
 </style>
-<script>
-  /* アプリ（Google Apps Script）のURL。?page=teacher など、この入口に付けた続きはそのまま渡す */
-  var APP = ['https:', '', 'script.google.com', 'macros', 's', 'AKfycbyhPayBr5KOOiEaTnawotu8Xvi4d6Iy1DBe8Q9_YRN7fHXHZKfvU4qLKU418UFLPKHu', 'exec'].join('/') + location.search;
-  /* ホーム画面のアイコンから開いたとき（またはURLに #go を付けたとき）は、すぐアプリへ */
-  var fromHome = window.navigator.standalone === true || (window.matchMedia && matchMedia('(display-mode: standalone)').matches);
-  if (fromHome || location.hash === '#go') location.replace(APP);
-</script>
 </head>
 <body>
-<main>
-  <img class="icon" src="icon-180.png?v=2" alt="">
-  <h1>英語学習</h1>
-  <p class="sub">多読（WPMリーディング）と1分間スピーチ</p>
-  <a class="open" id="open" href="#">アプリを開く</a>
-  <section class="how" aria-label="ホーム画面に追加するには">
-    <h2>ホーム画面に追加すると、アイコンから開けます</h2>
-    <ol id="steps">
-      <li><b>iPad（Safari）</b>：上の <b>共有ボタン</b>（四角から矢印）→「<b>ホーム画面に追加</b>」→「追加」</li>
-      <li><b>パソコン（Chrome）</b>：右上の <b>︙</b> →「<b>保存して共有</b>」→「<b>ショートカットを作成</b>」（「ウィンドウとして開く」にチェック）</li>
-      <li><b>パソコン（Edge）</b>：右上の <b>…</b> →「<b>アプリ</b>」→「<b>このサイトをアプリとしてインストール</b>」</li>
-    </ol>
-    <p class="note">このページを追加してください（アプリを開いたあとの画面ではなく、このページです）。</p>
-  </section>
-</main>
-<script>document.getElementById('open').href = APP;</script>
+<!-- このページの中に、アプリのログイン画面をそのまま出す（アドレスは github.io のままなので、ここで「ホーム画面に追加」するとアイコンが付く） -->
+<iframe id="app" title="英語学習" allow="clipboard-write; autoplay"></iframe>
+<script>
+  /* アプリのURL。?page=teacher など、このページに付けた続きはそのまま渡し、入口から開いた印（via=home）を足す */
+  var q = location.search ? location.search + '&via=home' : '?via=home';
+  document.getElementById('app').src = ['https:', '', 'script.google.com', 'macros', 's', 'AKfycbyhPayBr5KOOiEaTnawotu8Xvi4d6Iy1DBe8Q9_YRN7fHXHZKfvU4qLKU418UFLPKHu', 'exec'].join('/') + q;
+</script>
 </body>
 </html>
