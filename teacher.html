@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>英語学習 先生</title>
+<!-- ホーム画面に追加したときの名前とアイコン -->
+<meta name="apple-mobile-web-app-title" content="英語学習 先生">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#35322D">
+<!-- 先生用の入口ページ（生徒用 index.html の色違い。黒地のアイコン）。ホーム画面のアイコン。iPad は 152・167、iPhone は 180 を使う。?v= は版（画像を変えたら数字を上げると、iPadが新しい画像を読み直す） -->
+<link rel="apple-touch-icon" sizes="180x180" href="https://nishimura2858.github.io/eigo/teacher-icon-180.png?v=2">
+<link rel="apple-touch-icon" sizes="167x167" href="https://nishimura2858.github.io/eigo/teacher-icon-167.png?v=2">
+<link rel="apple-touch-icon" sizes="152x152" href="https://nishimura2858.github.io/eigo/teacher-icon-152.png?v=2">
+<link rel="apple-touch-icon" href="https://nishimura2858.github.io/eigo/teacher-icon-180.png?v=2">
+<link rel="icon" type="image/png" sizes="32x32" href="https://nishimura2858.github.io/eigo/teacher-icon-32.png?v=2">
+<link rel="manifest" href="teacher.webmanifest?v=1">
+<style>
+  html,body{margin:0;height:100%;background:#FFFFFF}
+  /* アプリ（Google Apps Script）をページいっぱいに表示する。ホーム画面から開いたときは、上の時計などの部分をあける */
+  iframe{position:fixed;left:0;right:0;bottom:0;top:env(safe-area-inset-top,0);width:100%;height:calc(100% - env(safe-area-inset-top,0px));border:0;display:block}
+</style>
+</head>
+<body>
+<!-- このページの中に、アプリのログイン画面をそのまま出す（アドレスは github.io のままなので、ここで「ホーム画面に追加」するとアイコンが付く） -->
+<iframe id="app" title="英語学習 先生" allow="clipboard-write; autoplay"></iframe>
+<script>
+  /* アプリの先生画面のURL（?page=teacher）。入口から開いた印（via=home）を足す */
+  var q = '?page=teacher&via=home';
+  document.getElementById('app').src = ['https:', '', 'script.google.com', 'macros', 's', 'AKfycbyhPayBr5KOOiEaTnawotu8Xvi4d6Iy1DBe8Q9_YRN7fHXHZKfvU4qLKU418UFLPKHu', 'exec'].join('/') + q;
+</script>
+</body>
+</html>
